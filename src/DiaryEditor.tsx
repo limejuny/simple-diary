@@ -6,6 +6,22 @@ interface DiaryEditorState {
   emotion: number;
 }
 
+class DiaryElement implements DiaryEditorState {
+  id: number;
+  author: string;
+  content: string;
+  emotion: number;
+  createdAt: number;
+
+  constructor(id: number, author: string, content: string, emotion: number, createdAt: number) {
+    this.id = id;
+    this.author = author;
+    this.content = content;
+    this.emotion = emotion;
+    this.createdAt = createdAt;
+  }
+}
+
 const DiaryEditor = () => {
   const authorInput = useRef<HTMLInputElement>(null);
   const contentInput = useRef<HTMLTextAreaElement>(null);
@@ -83,3 +99,4 @@ const DiaryEditor = () => {
 }
 
 export default DiaryEditor;
+export {DiaryElement};
