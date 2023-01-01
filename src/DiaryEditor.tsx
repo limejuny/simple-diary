@@ -1,12 +1,12 @@
 import {useRef, useState} from "react";
 
-interface DiaryEditorState {
+export interface DiaryEditorState {
   author: string;
   content: string;
   emotion: number;
 }
 
-class DiaryElement implements DiaryEditorState {
+export class DiaryElement implements DiaryEditorState {
   id: number;
   author: string;
   content: string;
@@ -22,7 +22,11 @@ class DiaryElement implements DiaryEditorState {
   }
 }
 
-const DiaryEditor = () => {
+type DiaryEditorProps = {
+  onCreate: (diary: DiaryEditorState) => void;
+};
+
+const DiaryEditor = ({onCreate}: DiaryEditorProps) => {
   const authorInput = useRef<HTMLInputElement>(null);
   const contentInput = useRef<HTMLTextAreaElement>(null);
   const [state, setState] = useState<DiaryEditorState>({
@@ -53,8 +57,8 @@ const DiaryEditor = () => {
       contentInput.current?.focus();
       return;
     }
-    console.log(state);
-    alert("저장 성공");
+
+    onCreate(state);
   };
 
   return (
@@ -99,4 +103,3 @@ const DiaryEditor = () => {
 }
 
 export default DiaryEditor;
-export {DiaryElement};
