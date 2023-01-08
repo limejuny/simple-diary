@@ -2,7 +2,12 @@ import React from "react";
 import {DiaryElement} from "./DiaryEditor";
 import DiaryItem from "./DiaryItem";
 
-const DiaryList = ({diaryList}: {diaryList: DiaryElement[]}) => {
+type DiaryListProps = {
+  diaryList: DiaryElement[];
+  onDelete: (id: number) => void;
+};
+
+const DiaryList = ({diaryList, onDelete}: DiaryListProps) => {
   console.log(diaryList);
   return (
     <div className="DiaryList">
@@ -10,7 +15,7 @@ const DiaryList = ({diaryList}: {diaryList: DiaryElement[]}) => {
       <h4>{diaryList.length}개의 일기가 있습니다.</h4>
       <div>
         {diaryList.map((diary) => (
-          <DiaryItem diary={diary} key={diary.id}/>
+          <DiaryItem key={diary.id} diary={diary} onDelete={onDelete} />
         ))}
       </div>
     </div>

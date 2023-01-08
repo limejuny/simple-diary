@@ -71,6 +71,10 @@
   margin-bottom: 10px;
 }
 
+.DiaryItem .button {
+  float: right;
+}
+
 .DiaryItem .date {
   color: gray;
 }
