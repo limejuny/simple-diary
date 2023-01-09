@@ -47,13 +47,13 @@ const DiaryEditor = ({onCreate}: DiaryEditorProps) => {
 
   const handleSubmit = () => {
     if (state.author.length === 0) {
-      // alert("작성자를 입력해주세요.");
+      alert("작성자를 입력해주세요.");
       authorInput.current?.focus();
       return;
     }
 
     if (state.content.length < 5) {
-      // alert("내용은 5자 이상 입력해주세요.");
+      alert("내용은 5자 이상 입력해주세요.");
       contentInput.current?.focus();
       return;
     }

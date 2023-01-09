@@ -83,3 +83,10 @@
   font-weight: bold;
   margin-top: 20px;
 }
+
+.DiaryItem .content textarea {
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+}

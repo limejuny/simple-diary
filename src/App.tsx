@@ -19,8 +19,10 @@ function App() {
   };
 
   const onDelete = (id: number) => {
-    setData(data.filter((e: DiaryElement) => e.id != id))
-    alert(id);
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      setData(data.filter((e: DiaryElement) => e.id !== id))
+      alert("삭제되었습니다.");
+    }
   };
 
   return (

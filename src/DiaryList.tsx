@@ -1,4 +1,3 @@
-import React from "react";
 import {DiaryElement} from "./DiaryEditor";
 import DiaryItem from "./DiaryItem";
 
