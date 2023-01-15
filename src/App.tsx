@@ -1,12 +1,35 @@
-import {useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import './App.css';
 import DiaryEditor, {DiaryEditorState, DiaryElement} from './DiaryEditor';
 import DiaryList from './DiaryList';
-import LifeCycle from './LifeCycle';
 
 function App() {
   const [data, setData] = useState([] as DiaryElement[]);
   const dataId = useRef(0);
+
+  const getData = async () => {
+    const res = await fetch(
+      'https://jsonplaceholder.typicode.com/comments'
+    ).then((res) => res.json());
+
+    const initData = res.slice(0, 20)
+      .map((item: any) => {
+        return new DiaryElement(
+          dataId.current++,
+          item.email,
+          item.body,
+          Math.floor(Math.random() * 5) + 1,
+          new Date().getTime()
+        )
+      });
+    console.log(res);
+
+    setData(initData);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const onCreate = (item: DiaryEditorState) => {
     const newItem: DiaryElement = new DiaryElement(
@@ -28,7 +51,6 @@ function App() {
 
   return (
     <div className="App">
-      <LifeCycle />
       <DiaryEditor onCreate={onCreate} />
       <DiaryList diaryList={data} onDelete={onDelete} />
     </div>
